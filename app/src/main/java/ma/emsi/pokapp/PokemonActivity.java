@@ -41,7 +41,7 @@ public class PokemonActivity extends AppCompatActivity {
         this.textHeight = findViewById(R.id.textHeight);
         this.textWeight = findViewById(R.id.textWeight);
 
-        this.progressPower = (ProgressBar) findViewById(R.id.progressPower);
+        this.progressPower = findViewById(R.id.progressPower);
         this.progressExperience = findViewById(R.id.progressExperience);
         this.progressHeight = findViewById(R.id.progressHeight);
         this.progressWeight = findViewById(R.id.progressWeight);
@@ -50,8 +50,6 @@ public class PokemonActivity extends AppCompatActivity {
 
         Picasso.get().load(intent.getStringExtra("imageUrl")).into((ImageView) findViewById(R.id.mainImage));
         this.textName.setText("#" + id + "." + intent.getStringExtra("name"));
-
-        PokemonMove pokemonMove = null;
 
         ApiConnection.getInstance().pokemonMoveCall(id).enqueue(new Callback<PokemonMove>() {
             @Override
