@@ -23,6 +23,48 @@ public class ApiConnection {
 }
 ```
 
+### Class ou models ""
+
+```java
+@NoArgsConstructor
+@Getter(value = AccessLevel.PUBLIC)
+@Setter(value = AccessLevel.PUBLIC)
+public class Pokemon {
+    private String name;
+
+    private String url;
+}
+
+```
+
+```java
+@NoArgsConstructor
+@Getter(value = AccessLevel.PUBLIC)
+@Setter(value = AccessLevel.PUBLIC)
+public class PokemonInfo {
+    @SerializedName("base_experience")
+    private int experience;
+
+    private int height;
+
+    private int weight;
+
+    private int order;
+}
+```
+
+```java
+@NoArgsConstructor
+@Getter(value = AccessLevel.PUBLIC)
+@Setter(value = AccessLevel.PUBLIC)
+public class PokemonMove {
+    private int power;
+
+    @SerializedName("pp")
+    private int powerPoints;
+}
+```
+
 # Screenshots
 <div align="center">
     <img src="screenshots/PokAPI-1.jpg" width="300" />
