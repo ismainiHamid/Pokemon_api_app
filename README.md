@@ -1,7 +1,7 @@
 # App Pokémon (Android)
 We retrieved Pokémon data using PokeAPI (https://pokeapi.co/), Retrofit (https://square.github.io/retrofit/)
 
-#### Class "ApiConnection"
+### Class "ApiConnection"
 
 ```java
 public class ApiConnection {
