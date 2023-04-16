@@ -1,15 +1,41 @@
 # App Pokémon (Android)
-Cette application android consommer une API (Pokeapi) comme exemple.\
-L'application strecturé et filtrer les données reçu.
+- Cette application android consommer une API (Pokeapi) comme exemple.
+- L'application strecturé et filtrer les données reçu.
 
-## Les packages et L'api utilisé
+## Les plugins et L'api utilisé
 
 - L'API utilisé **'Pokeapi'** (https://pokeapi.co/).
 - **Retrofit** pour faciliter la consommation l'API (https://square.github.io/retrofit/).
 - **Lombok project** pour générer les constructeurs, getters et setters dans les classes **'POJO'**.
 - **RecyclerView** pour charger les articles 'items' et structurer l'affichage des données.
 
-### Class "ApiConnection"
+## structure des packages dans le projet
+```bash
+com
+   |-- emsi
+   |   |-- pokapp
+   |   |   |-- adapter
+   |   |   |    |-- ListPokemonAdapter
+   |   |   |-- connection
+   |   |   |    |-- ApiConnection
+   |   |   |-- models
+   |   |   |    |-- Pokemon
+   |   |   |    |-- PokemonInfo
+   |   |   |    |-- PokemonMove
+   |   |   |-- response
+   |   |   |    |-- PokemonResponse
+   |   |   |-- services
+   |   |   |    |-- IPokemonServiceAPI
+   |   |   |-- MainActivity
+   |   |   |-- PokemonActivity
+   |   |-- pokapp
+   |-- emsi
+com
+```
+
+## Explication de code et techniques utilisé
+
+#### Class "ApiConnection"
 
 ```java
 public class ApiConnection {
@@ -31,7 +57,7 @@ public class ApiConnection {
 }
 ```
 
-### Classes ou models "Pokemon, PokemonInfo, PokemonMove"
+#### Classes ou models "Pokemon, PokemonInfo, PokemonMove"
 
 ```java
 @NoArgsConstructor
@@ -73,7 +99,7 @@ public class PokemonMove {
 }
 ```
 
-### Class "PokemonResponse"
+#### Class "PokemonResponse"
 
 ```java
 @NoArgsConstructor
@@ -85,7 +111,7 @@ public class PokemonResponse {
 }
 ```
 
-### Interface "IPokemonServiceAPI"
+#### Interface "IPokemonServiceAPI"
 
 ```java
 public interface IPokemonServiceAPI {
@@ -100,7 +126,7 @@ public interface IPokemonServiceAPI {
 }
 ```
 
-### Class "ListPokemonAdapter"
+#### Class "ListPokemonAdapter"
 
 ```java
 public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.ViewHolder> {
@@ -163,7 +189,7 @@ public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.
 }
 ```
 
-### Class "MainActivity"
+#### Class "MainActivity"
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -241,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Class "PokemonActivity"
+#### Class "PokemonActivity"
 
 ```java
 public class PokemonActivity extends AppCompatActivity {
