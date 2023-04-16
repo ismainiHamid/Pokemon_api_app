@@ -9,7 +9,7 @@
 - **Lombok project** pour générer les constructeurs, getters et setters dans les classes **'POJO'**.
 - **RecyclerView** pour charger les articles 'items' et structurer l'affichage des données.
 
-## structure des packages dans le projet
+## Structure des packages dans le projet
 ```bash
 com
    |-- emsi
