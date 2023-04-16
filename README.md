@@ -6,6 +6,7 @@
 
 - L'API utilisé **Pokeapi** (https://pokeapi.co/).
 - **Retrofit** pour faciliter la consommation l'API (https://square.github.io/retrofit/).
+- **Icon** (https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/).
 - **Lombok project** pour générer les constructeurs, getters et setters dans les classes **POJO**.
 - **RecyclerView** pour charger les articles 'items' et structurer l'affichage des données.
 
@@ -137,7 +138,12 @@ public class PokemonResponse {
 }
 ```
 
-#### Interface "IPokemonServiceAPI"
+#### Interface "IPokemonServiceAPI" : 
+Nous avons créé cette interface pour facilite de recuperation et navigation des données, comme exemple : 
+
+-***Pagination :*** (https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20).
+-***Informations :*** (https://pokeapi.co/api/v2/pokemon/{**id** ou **nom**}).
+-***Moves :*** (https://pokeapi.co/api/v2/move/{**id** ou **nom**}).
 
 ```java
 public interface IPokemonServiceAPI {
