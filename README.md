@@ -147,7 +147,7 @@ Nous avons créé cette interface pour facilite de recuperation et navigation de
 
 Quelques annotations utilisé pour **Retrofit :**  
 - ***@GET("pokemon") :*** Chaque méthode doit avoir une annotation HTTP qui fournit la méthode de requête et l'URL relative.
-- ***@Query("offset") :*** Une URL de demande peut être mise à jour dynamiquement à l'aide de blocs de remplacement et de **Qeury** sur la méthode. 
+- ***@Query("offset") :*** Une URL de demande peut être mise à jour dynamiquement à l'aide de blocs de remplacement et de **Query** sur la méthode. 
 - ***@Path("id") :*** Une URL de demande peut être mise à jour dynamiquement à l'aide de blocs de remplacement et de paramètres sur la méthode. Un bloc de remplacement est une chaîne alphanumérique entourée de **{ }**.
 
 ```java
