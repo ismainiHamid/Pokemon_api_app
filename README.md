@@ -33,7 +33,8 @@ com
 
 ## Explication de code et techniques utilisé
 
-#### Class "ApiConnection"
+#### Class "ApiConnection" : 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Nous avons appliqué de ce claas le design pattern **singleton**, la method **getInstance()** qui retourn une seule instanciation de l'objet **Retrofit**, nous avons utilisé cette technique pour optimizer, minimiser les instanciations de l'objet.
 
 ```java
 public class ApiConnection {
