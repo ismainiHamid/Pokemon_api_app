@@ -14,8 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.squareup.picasso.Picasso;
 
 import ma.emsi.pokapp.connection.ApiConnection;
-import ma.emsi.pokapp.models.PokemonInfo;
-import ma.emsi.pokapp.models.PokemonMove;
+import ma.emsi.pokapp.models.Pokemon;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,11 +50,11 @@ public class PokemonActivity extends AppCompatActivity {
         Picasso.get().load(intent.getStringExtra("imageUrl")).into((ImageView) findViewById(R.id.mainImage));
         this.textName.setText("#" + id + "." + intent.getStringExtra("name"));
 
-        ApiConnection.getInstance().pokemonMoveCall(id).enqueue(new Callback<PokemonMove>() {
+        ApiConnection.getInstance().pokemonMoveCall(id).enqueue(new Callback<Pokemon.PokemonMove>() {
             @Override
-            public void onResponse(Call<PokemonMove> call, Response<PokemonMove> response) {
+            public void onResponse(Call<Pokemon.PokemonMove> call, Response<Pokemon.PokemonMove> response) {
                 if(response.isSuccessful()) {
-                    PokemonMove pokemonMove = response.body();
+                    Pokemon.PokemonMove pokemonMove = response.body();
 
                     textPowerPoints.setText(String.format("%01d", pokemonMove.getPowerPoints()));
 
@@ -65,14 +64,14 @@ public class PokemonActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<PokemonMove> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
+            public void onFailure(Call<Pokemon.PokemonMove> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
         });
 
-        ApiConnection.getInstance().pokemonInfoCall(id).enqueue(new Callback<PokemonInfo>() {
+        ApiConnection.getInstance().pokemonInfoCall(id).enqueue(new Callback<Pokemon.PokemonInfo>() {
             @Override
-            public void onResponse(Call<PokemonInfo> call, Response<PokemonInfo> response) {
+            public void onResponse(Call<Pokemon.PokemonInfo> call, Response<Pokemon.PokemonInfo> response) {
                 if(response.isSuccessful()) {
-                    PokemonInfo pokemonInfo = response.body();
+                    Pokemon.PokemonInfo pokemonInfo = response.body();
 
                     textOrder.setText(String.format("%03d", pokemonInfo.getOrder()));
 
@@ -88,7 +87,7 @@ public class PokemonActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<PokemonInfo> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
+            public void onFailure(Call<Pokemon.PokemonInfo> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
         });
     }
 }
