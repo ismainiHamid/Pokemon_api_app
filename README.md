@@ -9,6 +9,7 @@
 - **Icon** (https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/).
 - **Lombok project** pour générer les constructeurs, getters et setters dans les classes **POJO**.
 - **RecyclerView** pour charger les articles 'items' et structurer l'affichage des données.
+- **Picasso** pour load les images en URL.
 
 ## Structure des packages dans le projet
 ```bash
