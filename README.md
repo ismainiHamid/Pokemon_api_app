@@ -4,9 +4,9 @@
 
 ## Les plugins et L'api utilisé
 
-- L'API utilisé **'Pokeapi'** (https://pokeapi.co/).
+- L'API utilisé **Pokeapi** (https://pokeapi.co/).
 - **Retrofit** pour faciliter la consommation l'API (https://square.github.io/retrofit/).
-- **Lombok project** pour générer les constructeurs, getters et setters dans les classes **'POJO'**.
+- **Lombok project** pour générer les constructeurs, getters et setters dans les classes **POJO**.
 - **RecyclerView** pour charger les articles 'items' et structurer l'affichage des données.
 
 ## Structure des packages dans le projet
