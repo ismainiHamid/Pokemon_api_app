@@ -20,8 +20,6 @@ com
    |   |   |    |-- ApiConnection
    |   |   |-- models
    |   |   |    |-- Pokemon
-   |   |   |    |-- PokemonInfo
-   |   |   |    |-- PokemonMove
    |   |   |-- response
    |   |   |    |-- PokemonResponse
    |   |   |-- services
@@ -67,35 +65,30 @@ public class Pokemon {
     private String name;
 
     private String url;
-}
 
-```
+    @NoArgsConstructor
+    @Getter(value = AccessLevel.PUBLIC)
+    @Setter(value = AccessLevel.PUBLIC)
+    public static class PokemonInfo {
+        @SerializedName("base_experience")
+        private int experience;
 
-```java
-@NoArgsConstructor
-@Getter(value = AccessLevel.PUBLIC)
-@Setter(value = AccessLevel.PUBLIC)
-public class PokemonInfo {
-    @SerializedName("base_experience")
-    private int experience;
+        private int height;
 
-    private int height;
+        private int weight;
 
-    private int weight;
+        private int order;
+    }
 
-    private int order;
-}
-```
+    @NoArgsConstructor
+    @Getter(value = AccessLevel.PUBLIC)
+    @Setter(value = AccessLevel.PUBLIC)
+    public static class PokemonMove {
+        private int power;
 
-```java
-@NoArgsConstructor
-@Getter(value = AccessLevel.PUBLIC)
-@Setter(value = AccessLevel.PUBLIC)
-public class PokemonMove {
-    private int power;
-
-    @SerializedName("pp")
-    private int powerPoints;
+        @SerializedName("pp")
+        private int powerPoints;
+    }
 }
 ```
 
@@ -119,10 +112,10 @@ public interface IPokemonServiceAPI {
     Call<PokemonResponse> pokemonResponseCall(@Query("offset") int offset, @Query("limit") int limit);
 
     @GET("pokemon/{id}")
-    Call<PokemonInfo> pokemonInfoCall(@Path("id") int id);
+    Call<Pokemon.PokemonInfo> pokemonInfoCall(@Path("id") int id);
 
     @GET("move/{id}")
-    Call<PokemonMove> pokemonMoveCall(@Path("id") int id);
+    Call<Pokemon.PokemonMove> pokemonMoveCall(@Path("id") int id);
 }
 ```
 
@@ -301,11 +294,11 @@ public class PokemonActivity extends AppCompatActivity {
         Picasso.get().load(intent.getStringExtra("imageUrl")).into((ImageView) findViewById(R.id.mainImage));
         this.textName.setText("#" + id + "." + intent.getStringExtra("name"));
 
-        ApiConnection.getInstance().pokemonMoveCall(id).enqueue(new Callback<PokemonMove>() {
+        ApiConnection.getInstance().pokemonMoveCall(id).enqueue(new Callback<Pokemon.PokemonMove>() {
             @Override
-            public void onResponse(Call<PokemonMove> call, Response<PokemonMove> response) {
+            public void onResponse(Call<Pokemon.PokemonMove> call, Response<Pokemon.PokemonMove> response) {
                 if(response.isSuccessful()) {
-                    PokemonMove pokemonMove = response.body();
+                    Pokemon.PokemonMove pokemonMove = response.body();
 
                     textPowerPoints.setText(String.format("%01d", pokemonMove.getPowerPoints()));
 
@@ -315,14 +308,14 @@ public class PokemonActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<PokemonMove> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
+            public void onFailure(Call<Pokemon.PokemonMove> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
         });
 
-        ApiConnection.getInstance().pokemonInfoCall(id).enqueue(new Callback<PokemonInfo>() {
+        ApiConnection.getInstance().pokemonInfoCall(id).enqueue(new Callback<Pokemon.PokemonInfo>() {
             @Override
-            public void onResponse(Call<PokemonInfo> call, Response<PokemonInfo> response) {
+            public void onResponse(Call<Pokemon.PokemonInfo> call, Response<Pokemon.PokemonInfo> response) {
                 if(response.isSuccessful()) {
-                    PokemonInfo pokemonInfo = response.body();
+                    Pokemon.PokemonInfo pokemonInfo = response.body();
 
                     textOrder.setText(String.format("%03d", pokemonInfo.getOrder()));
 
@@ -338,7 +331,7 @@ public class PokemonActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<PokemonInfo> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
+            public void onFailure(Call<Pokemon.PokemonInfo> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
         });
     }
 }
