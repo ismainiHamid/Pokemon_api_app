@@ -141,9 +141,14 @@ public class PokemonResponse {
 #### Interface "IPokemonServiceAPI" : 
 Nous avons créé cette interface pour facilite de recuperation et navigation des données, comme exemple : 
 
--***Pagination :*** (https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20).
--***Informations :*** (https://pokeapi.co/api/v2/pokemon/{**id** ou **nom**}).
--***Moves :*** (https://pokeapi.co/api/v2/move/{**id** ou **nom**}).
+- ***Pagination :*** (https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20).
+- ***Informations :*** (https://pokeapi.co/api/v2/pokemon/) {**id** ou **nom**}.
+- ***Moves :*** (https://pokeapi.co/api/v2/move/) {**id** ou **nom**}.
+
+Quelques annotations utilisé pour **Retrofit :**  
+- ***@GET("pokemon") :*** Chaque méthode doit avoir une annotation HTTP qui fournit la méthode de requête et l'URL relative.
+- ***@Query("offset") :*** Une URL de demande peut être mise à jour dynamiquement à l'aide de blocs de remplacement et de **Qeury** sur la méthode. 
+- ***@Path("id") :*** Une URL de demande peut être mise à jour dynamiquement à l'aide de blocs de remplacement et de paramètres sur la méthode. Un bloc de remplacement est une chaîne alphanumérique entourée de **{ }**.
 
 ```java
 public interface IPokemonServiceAPI {
