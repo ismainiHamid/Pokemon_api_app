@@ -58,11 +58,12 @@ public class ApiConnection {
 
 #### Classes ou models "Pokemon, PokemonInfo, PokemonMove" : 
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C'est ca l'implémentation de les class POJO pour stocker et strecture les données recu, Nous avons implémenté les trois class  
-en même fichier **class intégré**.\
-les annotations pour **lombok project :**  
-- **@NoArgsConstructor :** 
-- **@Getter(value = AccessLevel.PUBLIC) :**
-- **@Setter(value = AccessLevel.PUBLIC) :**
+en même fichier **class intégré**.
+
+Quelques annotations utilisé pour **lombok project :**  
+- @NoArgsConstructor : Pour générer le constructeur sans paramètre.
+- @Getter(value = AccessLevel.PUBLIC) : Générer les accesseurs **Getters**, le paramètre **value** pour specifier la visibilité de Getter.
+- @Setter(value = AccessLevel.PUBLIC) : Générer les modificateurs **Setters**, le paramètre **value** pour specifier la visibilité de Setter.
 
 ```java
 @NoArgsConstructor
