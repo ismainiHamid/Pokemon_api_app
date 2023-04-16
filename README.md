@@ -2,7 +2,7 @@
 - Cette application android consommer une API (Pokeapi) comme exemple.
 - L'application strecturé et filtrer les données reçu.
 
-## Les plugins et L'api utilisé
+## Les plugins et L'API utilisé
 
 - L'API utilisé **Pokeapi** (https://pokeapi.co/).
 - **Retrofit** pour faciliter la consommation l'API (https://square.github.io/retrofit/).
