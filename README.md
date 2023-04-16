@@ -234,8 +234,8 @@ public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.
 
 #### Class "MainActivity" :
 Cette main class qui reçoit les id des objet graphique est effectué des données, Contient deux method comme suite : 
-- **onCharge() :** Reçoit une variable entier (offset) comme parameter, Cette method recoit les données depuis l'API **Asynchrone** et stocké dans un objet **Pokemon**.
-- **onScrolled() :** 
+- **onCharge() :** Reçoit une variable entier **(offset)** comme parameter, Cette method recoit les données depuis l'API **Asynchrone** et stocké dans un objet **Pokemon**.
+- **onScrolled() :** Reçoit deux variable **(RecyclerView, item : 'nombre des items afficher')** comme parameter, pour chaque défilé **(scrolle)** la méthode doit charger 20 autre données **(pokemon)**.
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -314,6 +314,7 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 #### Class "PokemonActivity" :
+Cette main class qui reçoit les id des objet graphique est effectué des données, Contient deux method **Asynchrone** qui recoit les données depuis l'API.
 
 ```java
 public class PokemonActivity extends AppCompatActivity {
