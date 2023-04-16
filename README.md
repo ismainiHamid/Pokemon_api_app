@@ -35,7 +35,7 @@ com
 ## Explication de code et techniques utilisé
 
 #### Class "ApiConnection" : 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Nous avons appliqué de ce claas le design pattern **singleton**, la method **getInstance()** qui retourn une seule instanciation de l'objet **Retrofit**, nous avons utilisé cette technique pour optimizer, minimiser les instanciations de l'objet.
+Nous avons appliqué de ce claas le design pattern **singleton**, la method **getInstance()** qui retourn une seule instanciation de l'objet **Retrofit**, nous avons utilisé cette technique pour optimizer, minimiser les instanciations de l'objet.
 
 ```java
 public class ApiConnection {
@@ -58,7 +58,7 @@ public class ApiConnection {
 ```
 
 #### Classes ou models "Pokemon, PokemonInfo, PokemonMove" : 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C'est ca l'implémentation de les class POJO pour stocker et strecture les données recu, Nous avons implémenté les trois class  
+C'est ca l'implémentation de les class POJO pour stocker et strecture les données recu, Nous avons implémenté les trois class  
 en même fichier **class intégré**.
 
 Quelques annotations utilisé pour **lombok project :**  
@@ -163,7 +163,7 @@ public interface IPokemonServiceAPI {
 }
 ```
 
-#### Class "ListPokemonAdapter"
+#### Class "ListPokemonAdapter" :
 
 ```java
 public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.ViewHolder> {
@@ -226,7 +226,7 @@ public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.
 }
 ```
 
-#### Class "MainActivity"
+#### Class "MainActivity" :
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -304,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-#### Class "PokemonActivity"
+#### Class "PokemonActivity" :
 
 ```java
 public class PokemonActivity extends AppCompatActivity {
