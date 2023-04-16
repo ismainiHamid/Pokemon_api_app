@@ -100,7 +100,32 @@ public class Pokemon {
 }
 ```
 
-#### Class "PokemonResponse"
+#### Class "PokemonResponse" : 
+Nous avons créé cette class parce que l'api qui return les resultats sous form tableau JSON comme suit : 
+
+```json
+{
+   "count": 1281,
+   "next": "https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20",
+   "previous": null,
+   "results": [
+      {
+      "name": "bulbasaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/1/"
+      },
+      {
+      "name": "ivysaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/2/"
+      },
+      {
+      "name": "venusaur",
+      "url": "https://pokeapi.co/api/v2/pokemon/3/"
+      }
+   ]
+}
+```
+
+Comme a noté de les données **JSON** nous avons tableau **results**, Nous utilisons l'annotation **@SerializedName("results")** pour stocké les resultat dans un ArrayList **pokemonCall**.
 
 ```java
 @NoArgsConstructor
