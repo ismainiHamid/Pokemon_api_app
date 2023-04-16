@@ -165,6 +165,11 @@ public interface IPokemonServiceAPI {
 ```
 
 #### Class "ListPokemonAdapter" :
+Nous avons créé une class **ListPokemonAdapter** qui herité d'un adapter **(RecyclerView.Adapter)** et nous avons redefiner les methods **(onCreateViewHolder(), onBindViewHolder(), getItemCount())**.
+
+Nous avons définir une class **ViewHolder** qui contient les composant dans un item.
+
+Nous utilisons une événement **OnClickListener**, nous avons décalé une objet Intent et effecture les éléments important nous voulons envoyer de la deuxième **Activity**.
 
 ```java
 public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.ViewHolder> {
