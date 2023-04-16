@@ -169,7 +169,7 @@ Nous avons créé une class **ListPokemonAdapter** qui herité d'un adapter **(R
 
 Nous avons définir une class **ViewHolder** qui contient les composant dans un item.
 
-Nous utilisons une événement **OnClickListener**, nous avons décalé une objet Intent et effecture les éléments important nous voulons envoyer de la deuxième **Activity**.
+Nous utilisons une événement **OnClickListener**, nous avons décalé une objet **Intent** et effecture les éléments important nous voulons envoyer de la deuxième **Activity**.
 
 ```java
 public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.ViewHolder> {
