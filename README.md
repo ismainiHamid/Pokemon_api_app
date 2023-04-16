@@ -1,7 +1,39 @@
 # App Pokémon (Android)
-We retrieved Pokémon data using PokeAPI (https://pokeapi.co/), Retrofit (https://square.github.io/retrofit/)
+- Cette application android consommer une API (Pokeapi) comme exemple.
+- L'application strecturé et filtrer les données reçu.
 
-### Class "ApiConnection"
+## Les plugins et L'api utilisé
+
+- L'API utilisé **'Pokeapi'** (https://pokeapi.co/).
+- **Retrofit** pour faciliter la consommation l'API (https://square.github.io/retrofit/).
+- **Lombok project** pour générer les constructeurs, getters et setters dans les classes **'POJO'**.
+- **RecyclerView** pour charger les articles 'items' et structurer l'affichage des données.
+
+## Structure des packages dans le projet
+```bash
+com
+   |-- emsi
+   |   |-- pokapp
+   |   |   |-- adapter
+   |   |   |    |-- ListPokemonAdapter
+   |   |   |-- connection
+   |   |   |    |-- ApiConnection
+   |   |   |-- models
+   |   |   |    |-- Pokemon
+   |   |   |-- response
+   |   |   |    |-- PokemonResponse
+   |   |   |-- services
+   |   |   |    |-- IPokemonServiceAPI
+   |   |   |-- MainActivity
+   |   |   |-- PokemonActivity
+   |   |-- pokapp
+   |-- emsi
+com
+```
+
+## Explication de code et techniques utilisé
+
+#### Class "ApiConnection"
 
 ```java
 public class ApiConnection {
@@ -23,7 +55,7 @@ public class ApiConnection {
 }
 ```
 
-### Classes ou models "Pokemon, PokemonInfo, PokemonMove"
+#### Classes ou models "Pokemon, PokemonInfo, PokemonMove"
 
 ```java
 @NoArgsConstructor
@@ -33,39 +65,34 @@ public class Pokemon {
     private String name;
 
     private String url;
-}
 
-```
+    @NoArgsConstructor
+    @Getter(value = AccessLevel.PUBLIC)
+    @Setter(value = AccessLevel.PUBLIC)
+    public static class PokemonInfo {
+        @SerializedName("base_experience")
+        private int experience;
 
-```java
-@NoArgsConstructor
-@Getter(value = AccessLevel.PUBLIC)
-@Setter(value = AccessLevel.PUBLIC)
-public class PokemonInfo {
-    @SerializedName("base_experience")
-    private int experience;
+        private int height;
 
-    private int height;
+        private int weight;
 
-    private int weight;
+        private int order;
+    }
 
-    private int order;
-}
-```
+    @NoArgsConstructor
+    @Getter(value = AccessLevel.PUBLIC)
+    @Setter(value = AccessLevel.PUBLIC)
+    public static class PokemonMove {
+        private int power;
 
-```java
-@NoArgsConstructor
-@Getter(value = AccessLevel.PUBLIC)
-@Setter(value = AccessLevel.PUBLIC)
-public class PokemonMove {
-    private int power;
-
-    @SerializedName("pp")
-    private int powerPoints;
+        @SerializedName("pp")
+        private int powerPoints;
+    }
 }
 ```
 
-### Class "PokemonResponse"
+#### Class "PokemonResponse"
 
 ```java
 @NoArgsConstructor
@@ -77,7 +104,7 @@ public class PokemonResponse {
 }
 ```
 
-### Interface "IPokemonServiceAPI"
+#### Interface "IPokemonServiceAPI"
 
 ```java
 public interface IPokemonServiceAPI {
@@ -85,14 +112,14 @@ public interface IPokemonServiceAPI {
     Call<PokemonResponse> pokemonResponseCall(@Query("offset") int offset, @Query("limit") int limit);
 
     @GET("pokemon/{id}")
-    Call<PokemonInfo> pokemonInfoCall(@Path("id") int id);
+    Call<Pokemon.PokemonInfo> pokemonInfoCall(@Path("id") int id);
 
     @GET("move/{id}")
-    Call<PokemonMove> pokemonMoveCall(@Path("id") int id);
+    Call<Pokemon.PokemonMove> pokemonMoveCall(@Path("id") int id);
 }
 ```
 
-### Class "ListPokemonAdapter"
+#### Class "ListPokemonAdapter"
 
 ```java
 public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.ViewHolder> {
@@ -155,7 +182,7 @@ public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.
 }
 ```
 
-### Class "MainActivity"
+#### Class "MainActivity"
 
 ```java
 public class MainActivity extends AppCompatActivity {
@@ -233,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Class "PokemonActivity"
+#### Class "PokemonActivity"
 
 ```java
 public class PokemonActivity extends AppCompatActivity {
@@ -267,11 +294,11 @@ public class PokemonActivity extends AppCompatActivity {
         Picasso.get().load(intent.getStringExtra("imageUrl")).into((ImageView) findViewById(R.id.mainImage));
         this.textName.setText("#" + id + "." + intent.getStringExtra("name"));
 
-        ApiConnection.getInstance().pokemonMoveCall(id).enqueue(new Callback<PokemonMove>() {
+        ApiConnection.getInstance().pokemonMoveCall(id).enqueue(new Callback<Pokemon.PokemonMove>() {
             @Override
-            public void onResponse(Call<PokemonMove> call, Response<PokemonMove> response) {
+            public void onResponse(Call<Pokemon.PokemonMove> call, Response<Pokemon.PokemonMove> response) {
                 if(response.isSuccessful()) {
-                    PokemonMove pokemonMove = response.body();
+                    Pokemon.PokemonMove pokemonMove = response.body();
 
                     textPowerPoints.setText(String.format("%01d", pokemonMove.getPowerPoints()));
 
@@ -281,14 +308,14 @@ public class PokemonActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<PokemonMove> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
+            public void onFailure(Call<Pokemon.PokemonMove> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
         });
 
-        ApiConnection.getInstance().pokemonInfoCall(id).enqueue(new Callback<PokemonInfo>() {
+        ApiConnection.getInstance().pokemonInfoCall(id).enqueue(new Callback<Pokemon.PokemonInfo>() {
             @Override
-            public void onResponse(Call<PokemonInfo> call, Response<PokemonInfo> response) {
+            public void onResponse(Call<Pokemon.PokemonInfo> call, Response<Pokemon.PokemonInfo> response) {
                 if(response.isSuccessful()) {
-                    PokemonInfo pokemonInfo = response.body();
+                    Pokemon.PokemonInfo pokemonInfo = response.body();
 
                     textOrder.setText(String.format("%03d", pokemonInfo.getOrder()));
 
@@ -304,7 +331,7 @@ public class PokemonActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<PokemonInfo> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
+            public void onFailure(Call<Pokemon.PokemonInfo> call, Throwable t) { Log.i(TAG, "Error : " + t.getMessage()); }
         });
     }
 }
@@ -312,9 +339,11 @@ public class PokemonActivity extends AppCompatActivity {
 
 # Screenshots
 <div align="center">
-    <img src="screenshots/PokAPI-1.jpg" width="320" />
-    &nbsp; &nbsp; &nbsp; &nbsp;
-    <img src="screenshots/PokAPI-2.jpg" width="320" />
+    <img src="screenshots/PokAPI-1.jpg" width="250" />
+    &nbsp; &nbsp; &nbsp;
+    <img src="screenshots/PokAPI-2.jpg" width="250" />
+    &nbsp; &nbsp; &nbsp;
+    <img src="screenshots/PokAPI-3.jpg" width="250" />
 </div>
 
 
