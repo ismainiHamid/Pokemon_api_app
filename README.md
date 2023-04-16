@@ -233,6 +233,9 @@ public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.
 ```
 
 #### Class "MainActivity" :
+Cette main class qui reçoit les id des objet graphique est effectué des données, Contient deux method comme suite : 
+- **onCharge() :** Reçoit une variable entier (offset) comme parameter, Cette method recoit les données depuis l'API **Asynchrone** et stocké dans un objet **Pokemon**.
+- **onScrolled() :** 
 
 ```java
 public class MainActivity extends AppCompatActivity {
