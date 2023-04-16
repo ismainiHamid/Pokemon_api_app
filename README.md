@@ -321,9 +321,9 @@ public class PokemonActivity extends AppCompatActivity {
 # Screenshots
 <div align="center">
     <img src="screenshots/PokAPI-1.jpg" width="300" />
-    &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;
     <img src="screenshots/PokAPI-2.jpg" width="300" />
-    &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp;
     <img src="screenshots/PokAPI-3.jpg" width="300" />
 </div>
 
